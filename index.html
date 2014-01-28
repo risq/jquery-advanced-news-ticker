@@ -20,12 +20,23 @@
                 <li>8. Onec bibendum consectetur diam, nec euismod urna venenatis eget. Cras consequat convallis leo. <a href="#">Read more...</a> </li>
             </ul>
         </div>
+        <div id="controls">
+            <a id="prev-button" href="#">Prev</a> - 
+            <a id="next-button" href="#">Next</a> - 
+            <a id="stop-button" href="#">Stop</a> - 
+            <a id="start-button" href="#">Start</a>
+        </div>
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="js/newsTicker.js"></script>
 
         <script>
-            var nt = $('#news-ticker').newsTicker();
+            var nt = $('#news-ticker').newsTicker({
+                    prevButton: $('#prev-button'),
+                    nextButton: $('#next-button'),
+                    stopButton: $('#stop-button'),
+                    startButton: $('#start-button')
+                });
         </script>
     </body>
 </html>

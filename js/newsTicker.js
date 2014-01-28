@@ -20,9 +20,13 @@
                         max_items: 3,
                         speed: 400,
                         direction: 'up',
-                        time: 5000,
+                        time: 2500,
                         autostart: 1,
                         stopOnHover: 1,
+                        nextButton: null,
+                        prevButton: null,
+                        startButton: null,
+                        stopButton: null,
                         movingUp: function() {},
                         movingDown: function() {},
                         start: function() {},
@@ -30,7 +34,6 @@
                 };
 
         // The actual plugin constructor
-
         function Plugin(element, options) {
                 this.element = element;
                 this.$el = $(element);
@@ -53,8 +56,23 @@
                                 .height(this.options.row_height * this.options.max_items)
                                 .css({overflowY : 'hidden'})
                                 //.children('li').height(this.options.row_height);
-                        if(this.options.autostart)
-                                this.start();
+                        if(this.options.nextButton && typeof(this.options.nextButton[0]) !== 'undefined')
+                                this.options.nextButton.click(function(e) {
+                                        this.moveNext()
+                                }.bind(this));
+                        if(this.options.prevButton && typeof(this.options.prevButton[0]) !== 'undefined')
+                                this.options.prevButton.click(function(e) {
+                                        this.movePrev()
+                                }.bind(this));
+                        if(this.options.stopButton && typeof(this.options.stopButton[0]) !== 'undefined')
+                                this.options.stopButton.click(function(e) {
+                                        this.stop()
+                                }.bind(this));
+                        if(this.options.startButton && typeof(this.options.startButton[0]) !== 'undefined')
+                                this.options.startButton.click(function(e) {
+                                        this.start()
+                                }.bind(this));
+                        
                         if(this.options.stopOnHover) {
                                 var base = this;
                                 base.$el.hover(function() {
@@ -65,12 +83,14 @@
                                                 base.paused = 0;
                                 });
                         }
+                        if(this.options.autostart)
+                                this.start();
                 },
 
                 start: function() {
                         if (!this.state) {
                                 clearInterval(this.moveInterval);
-                                this.moveInterval = setInterval(function() {this.move()}.bind(this), this.options.time);
+                                this.moveInterval = setInterval(function() {this.moveNext()}.bind(this), this.options.time);
                                 this.state = 1;
                                 this.options.start();
                         }
@@ -84,12 +104,21 @@
                         }
                 },
 
-                move: function() {
+                moveNext: function() {
                         if (!this.paused) {
                                 if (this.options.direction === 'down')
                                         this.moveDown();
                                 else if (this.options.direction === 'up')
                                         this.moveUp();
+                        }
+                },
+
+                movePrev: function() {
+                        if (!this.paused) {
+                                if (this.options.direction === 'down')
+                                        this.moveUp();
+                                else if (this.options.direction === 'up')
+                                        this.moveDown();
                         }
                 },
 
