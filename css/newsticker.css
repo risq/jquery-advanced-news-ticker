@@ -1,0 +1,59 @@
+body {
+	font-family: 'Lato', sans-serif;
+	color: #444;
+	font-size: 1.2em;
+	font-weight: 300;
+}
+
+a {
+	color: #111;
+	border-bottom: 1px dotted #111;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+ul.newsticker-container {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+.newsticker-container > li {
+	display: block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	background-color: #fefefe;
+	height: 46px;
+	padding: 16px 12px;
+	border-bottom: 1px dotted #888;
+	-o-transition: background-color .2s;
+    -moz-transition: background-color .2s;
+    -webkit-transition: background-color .2s;
+    -ms-transition: background-color .2s;
+    transition: background-color .2s;
+
+}
+
+.newsticker-container > li:hover {
+	background-color: #e0f0ff;
+}
+
+.container {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	position: relative;
+	width: 700px;
+	margin: 50px;
+}
+
+.container:before, .container:after {
+	border-radius: 100px 100px 100px 100px / 10px 10px 10px 10px;
+	bottom: 0;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+	content: "";
+	left: 10px;
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	z-index: -1;
+}
