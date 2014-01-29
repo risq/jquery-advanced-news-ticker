@@ -16,8 +16,8 @@
         // Create the defaults once
         var pluginName = 'newsTicker',
                 defaults = {
-                        row_height: 78,
-                        max_items: 3,
+                        row_height: 22,
+                        max_rows: 3,
                         speed: 400,
                         direction: 'up',
                         time: 2500,
@@ -30,7 +30,9 @@
                         movingUp: function() {},
                         movingDown: function() {},
                         start: function() {},
-                        stop: function() {}
+                        stop: function() {},
+                        pause: function() {},
+                        unpause: function() {}
                 };
 
         // The actual plugin constructor
@@ -52,17 +54,19 @@
                 init: function() {
                         if (this.options.time < this.options.speed)
                                 this.options.time = this.options.speed;
-                        this.$el.addClass('newsticker-container')
-                                .height(this.options.row_height * this.options.max_items)
-                                .css({overflowY : 'hidden'})
-                                //.children('li').height(this.options.row_height);
+
+                        this.$el.height(this.options.row_height * this.options.max_rows)
+                                .css({overflow : 'hidden'})
+
                         if(this.options.nextButton && typeof(this.options.nextButton[0]) !== 'undefined')
                                 this.options.nextButton.click(function(e) {
-                                        this.moveNext()
+                                        this.moveNext();
+                                        this.resetInterval();
                                 }.bind(this));
                         if(this.options.prevButton && typeof(this.options.prevButton[0]) !== 'undefined')
                                 this.options.prevButton.click(function(e) {
-                                        this.movePrev()
+                                        this.movePrev();
+                                        this.resetInterval();
                                 }.bind(this));
                         if(this.options.stopButton && typeof(this.options.stopButton[0]) !== 'undefined')
                                 this.options.stopButton.click(function(e) {
@@ -74,24 +78,23 @@
                                 }.bind(this));
                         
                         if(this.options.stopOnHover) {
-                                var base = this;
-                                base.$el.hover(function() {
-                                        if (base.state)
-                                                base.paused = 1;
-                                }, function() {
-                                        if (base.state)
-                                                base.paused = 0;
-                                });
+                                this.$el.hover(function() {
+                                        if (this.state)
+                                                this.pause();
+                                }.bind(this), function() {
+                                        if (this.state)
+                                                this.unpause();
+                                }.bind(this));
                         }
+
                         if(this.options.autostart)
                                 this.start();
                 },
 
                 start: function() {
                         if (!this.state) {
-                                clearInterval(this.moveInterval);
-                                this.moveInterval = setInterval(function() {this.moveNext()}.bind(this), this.options.time);
                                 this.state = 1;
+                                this.resetInterval();
                                 this.options.start();
                         }
                 },
@@ -104,22 +107,39 @@
                         }
                 },
 
-                moveNext: function() {
-                        if (!this.paused) {
-                                if (this.options.direction === 'down')
-                                        this.moveDown();
-                                else if (this.options.direction === 'up')
-                                        this.moveUp();
+                resetInterval: function() {
+                        if (this.state) {
+                                clearInterval(this.moveInterval);
+                                this.moveInterval = setInterval(function() {this.move()}.bind(this), this.options.time);
                         }
                 },
 
+                move: function() {
+                         if (!this.paused) this.moveNext();
+                },
+
+                moveNext: function() {
+                        if (this.options.direction === 'down')
+                                this.moveDown();
+                        else if (this.options.direction === 'up')
+                                this.moveUp();
+                },
+
                 movePrev: function() {
-                        if (!this.paused) {
-                                if (this.options.direction === 'down')
-                                        this.moveUp();
-                                else if (this.options.direction === 'up')
-                                        this.moveDown();
-                        }
+                        if (this.options.direction === 'down')
+                                this.moveUp();
+                        else if (this.options.direction === 'up')
+                                this.moveDown();
+                },
+
+                pause: function() {
+                        if (!this.paused) this.paused = 1;
+                        this.options.pause();
+                },
+
+                unpause: function() {
+                        if (this.paused) this.paused = 0;
+                        this.options.unpause();
                 },
 
                 moveDown: function() {
@@ -143,7 +163,12 @@
                 },
 
                 getState: function() {
-                        return this.state;//0 = stopped, 1 = started
+                        if (paused) return 2
+                        else return this.state;//0 = stopped, 1 = started
+                },
+
+                destroy: function() {
+                        this._destroy(); //or this.delete; depends on jQuery version
                 }
         };
 

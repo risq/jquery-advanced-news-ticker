@@ -8,35 +8,69 @@
         <link rel="stylesheet" href="css/newsticker.css">
     </head>
     <body>
-        <div class="container">
-            <ul id="news-ticker">
-                <li>1. Etiam imperdiet volutpat libero eu tristique. Aenean eget nulla euismod, rutrum felis in, consequat diam. <a href="#">Read more...</a></li>
-                <li>2. Curabitur porttitor ante eget hendrerit adipiscing. Maecenas at magna accumsan, rhoncus neque id, fringilla dolor. <a href="#">Read more...</a></li>
-                <li>3. Praesent ornare nisl lorem, ut condimentum lectus gravida ut. Ut velit nunc, vehicula volutpat laoreet vel, consequat eu mauris. <a href="#">Read more...</a></li>
-                <li>4. Nunc ultrices tortor eu massa placerat posuere. Vivamus viverra sagittis nunc. Nunc et imperdiet magna. Mauris sed eros nulla.  <a href="#">Read more...</a></li>
-                <li>5. Morbi sodales tellus sit amet leo congue bibendum. Ut non mauris eu neque fermentum pharetra. <a href="#">Read more...</a></li>
-                <li>6. In pharetra suscipit orci sed viverra. Praesent at sollicitudin tortor, id sagittis magna. Fusce massa sem, bibendum id. <a href="#">Read more...</a> </li>
-                <li>7. Maecenas nec ligula sed est suscipit aliquet sed eget ipsum. Suspendisse id auctor nibh. Ut porttitor volutpat augue, non sodales odio dignissi id. <a href="#">Read more...</a></li>
-                <li>8. Onec bibendum consectetur diam, nec euismod urna venenatis eget. Cras consequat convallis leo. <a href="#">Read more...</a> </li>
+        <div id="oneliner">
+            <div class="header">
+                Breaking News
+            </div>
+            <ul class="newsticker">
+                <li>Etiam imperdiet volutpat libero eu tristique. Aenean eget nulla euismod, rutrum felis in, consequat diam.</li>
+                <li>Curabitur porttitor ante eget hendrerit adipiscing. Maecenas at magna accumsan, rhoncus neque id, fringilla dolor.</li>
+                <li>Praesent ornare nisl lorem, ut condimentum lectus gravida ut. Ut velit nunc, vehicula volutpat laoreet vel, consequat eu mauris.</li>
+                <li>Nunc ultrices tortor eu massa placerat posuere. Vivamus viverra sagittis nunc. Nunc et imperdiet magna. Mauris sed eros nulla.</li>
+                <li>Morbi sodales tellus sit amet leo congue bibendum. Ut non mauris eu neque fermentum pharetra.</li>
+                <li>In pharetra suscipit orci sed viverra. Praesent at sollicitudin tortor, id sagittis magna. Fusce massa sem, bibendum id.</li>
+                <li>Maecenas nec ligula sed est suscipit aliquet sed eget ipsum. Suspendisse id auctor nibh. Ut porttitor volutpat augue, non sodales odio dignissi id.</li>
+                <li>Onec bibendum consectetur diam, nec euismod urna venenatis eget. Cras consequat convallis leo.</li>
             </ul>
         </div>
-        <div id="controls">
-            <a id="prev-button" href="#">Prev</a> - 
-            <a id="next-button" href="#">Next</a> - 
-            <a id="stop-button" href="#">Stop</a> - 
-            <a id="start-button" href="#">Start</a>
+
+        <div id="multilines">
+            <div class="container">
+                <ul class="newsticker">
+                    <li>Etiam imperdiet volutpat libero eu tristique. Aenean eget nulla euismod, rutrum felis in, consequat diam. <a href="#">Read more...</a></li>
+                    <li>Curabitur porttitor ante eget hendrerit adipiscing. Maecenas at magna accumsan, rhoncus neque id, fringilla dolor. <a href="#">Read more...</a></li>
+                    <li>Praesent ornare nisl lorem, ut condimentum lectus gravida ut. Ut velit nunc, vehicula volutpat laoreet vel, consequat eu mauris. <a href="#">Read more...</a></li>
+                    <li>Nunc ultrices tortor eu massa placerat posuere. Vivamus viverra sagittis nunc. Nunc et imperdiet magna. Mauris sed eros nulla.  <a href="#">Read more...</a></li>
+                    <li>Morbi sodales tellus sit amet leo congue bibendum. Ut non mauris eu neque fermentum pharetra. <a href="#">Read more...</a></li>
+                    <li>In pharetra suscipit orci sed viverra. Praesent at sollicitudin tortor, id sagittis magna. Fusce massa sem, bibendum id. <a href="#">Read more...</a> </li>
+                    <li>Maecenas nec ligula sed est suscipit aliquet sed eget ipsum. Suspendisse id auctor nibh. Ut porttitor volutpat augue, non sodales odio dignissi id. <a href="#">Read more...</a></li>
+                    <li>Onec bibendum consectetur diam, nec euismod urna venenatis eget. Cras consequat convallis leo. <a href="#">Read more...</a> </li>
+                </ul>
+            </div>
+            <div class="controls">
+                <a class="prev-button" href="#">Prev</a> - 
+                <a class="next-button" href="#">Next</a> - 
+                <a class="stop-button" href="#">Stop</a> - 
+                <a class="start-button" href="#">Start</a>
+            </div>
         </div>
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="js/newsTicker.js"></script>
 
         <script>
-            var nt = $('#news-ticker').newsTicker({
-                    prevButton: $('#prev-button'),
-                    nextButton: $('#next-button'),
-                    stopButton: $('#stop-button'),
-                    startButton: $('#start-button')
-                });
+            var multilines = $('#multilines .newsticker').newsTicker({
+                row_height: 78,
+                speed: 800,
+                prevButton: $('#multilines .prev-button'),
+                nextButton: $('#multilines .next-button'),
+                stopButton: $('#multilines .stop-button'),
+                startButton: $('#multilines .start-button')
+            });
+
+            var oneliner = $('#oneliner .newsticker').newsTicker({
+                row_height: 44,
+                max_rows: 1,
+                time: 5000,
+                nextButton: $('#oneliner .header')
+            });
+
+            // Pause newsTicker on .header hover
+            $('#oneliner .header').hover(function() {
+                oneliner.newsTicker('pause');
+            }, function() {
+                oneliner.newsTicker('unpause');
+            });
         </script>
     </body>
 </html>
