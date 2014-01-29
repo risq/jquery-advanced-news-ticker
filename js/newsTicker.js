@@ -5,7 +5,7 @@
 (function($, window, document, undefined) {
         'use strict';
         // undefined is used here as the undefined global variable in ECMAScript 3 is
-        // mutable (ie. it can be changed by someone else). undefined isn't really being
+        // mutable (ie. it can be hasMoved by someone else). undefined isn't really being
         // passed in so we can ensure the value of it is truly undefined. In ES5, undefined
         // can no longer be modified.
 
@@ -16,7 +16,7 @@
         // Create the defaults once
         var pluginName = 'newsTicker',
                 defaults = {
-                        row_height: 22,
+                        row_height: 20,
                         max_rows: 3,
                         speed: 400,
                         direction: 'up',
@@ -27,6 +27,7 @@
                         prevButton: null,
                         startButton: null,
                         stopButton: null,
+                        hasMoved: function() {},
                         movingUp: function() {},
                         movingDown: function() {},
                         start: function() {},
@@ -45,6 +46,7 @@
                 this.moveInterval;
                 this.state = 0;
                 this.paused = 0;
+                this.moving = 0;
                 if (this.$el.is('ul')) {
                         this.init();
                 }
@@ -52,11 +54,10 @@
 
         Plugin.prototype = {
                 init: function() {
-                        if (this.options.time < this.options.speed)
-                                this.options.time = this.options.speed;
-
                         this.$el.height(this.options.row_height * this.options.max_rows)
-                                .css({overflow : 'hidden'})
+                                .css({overflow : 'hidden'});
+
+                        this.checkSpeed();
 
                         if(this.options.nextButton && typeof(this.options.nextButton[0]) !== 'undefined')
                                 this.options.nextButton.click(function(e) {
@@ -143,23 +144,35 @@
                 },
 
                 moveDown: function() {
-                        this.options.movingDown();
-                        this.$el.children('li:last').detach().prependTo(this.$el).css('marginTop', '-' + this.options.row_height + 'px')
-                                .animate({marginTop: '0px'}, this.options.speed);
+                        if (!this.moving) {
+                                this.moving = 1;
+                                this.options.movingDown();
+                                this.$el.children('li:last').detach().prependTo(this.$el).css('marginTop', '-' + this.options.row_height + 'px')
+                                        .animate({marginTop: '0px'}, this.options.speed, function(){
+                                                this.moving = 0;
+                                                this.options.hasMoved();
+                                        }.bind(this));
+                        }
                 },
 
                 moveUp: function() {
-                        var element = this.$el;
-                        this.options.movingUp();
-                        this.$el.children('li:first').animate({marginTop: '-' + this.options.row_height + 'px'}, this.options.speed,
-                                function(){
-                                        $(this).detach().css('marginTop', '0').appendTo(element);
-                                });
+                        if (!this.moving) {
+                                this.moving = 1;
+                                this.options.movingUp();
+                                var element = this.$el.children('li:first');
+                                element.animate({marginTop: '-' + this.options.row_height + 'px'}, this.options.speed,
+                                        function(){
+                                                element.detach().css('marginTop', '0').appendTo(this.$el);
+                                                this.moving = 0;
+                                                this.options.hasMoved();
+                                        }.bind(this));
+                        }
                 },
 
                 updateOption: function(option, value) {
                         if (typeof(this.options[option]) !== 'undefined')
                                 this.options[option] = value;
+                        //TODO: checkSpeed if speed/time
                 },
 
                 getState: function() {
@@ -167,11 +180,15 @@
                         else return this.state;//0 = stopped, 1 = started
                 },
 
+                checkSpeed: function() {
+                        if (this.options.time < (this.options.speed + 25))
+                                this.options.speed = this.options.time - 25;
+                },
+
                 destroy: function() {
                         this._destroy(); //or this.delete; depends on jQuery version
                 }
         };
-
 
         // A really lightweight plugin wrapper around the constructor,
         // preventing against multiple instantiations
@@ -194,5 +211,4 @@
                         }
                 });
         };
-
 })(jQuery, window, document);
