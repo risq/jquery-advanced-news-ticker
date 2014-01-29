@@ -85,21 +85,23 @@ nt.newsTicker('updateOption','direction','down');
 
 Parameters & Callbacks
 ===========================
-| Parameter     | Usage         | Type/Values   | Default value |
-| ------------- | ------------- | ------------- | ------------- |
-| row_height    |
-| max_row       |
-| speed         |
-| direction     |
-| time
-| autostart
-| stopOnHover
-| nextButton
-| prevButton
-| startButton
-| stopButton
-| hasMoved
-| 
-| 
-| 
-| 
+| Parameter       | Usage                                                              | Type/Values   | Default value |
+| --------------- | ------------------------------------------------------------------ | ------------- | ------------- |
+| `row_height`    | defines the height (in px) of one row                              | `int`           | *22*
+| `max_row`       | defines the number of rows displayed at the same time              | `int`           | *3*
+| `speed`         | defines the animation speed (in ms)of the rows moving up or down   | `int` *(in ms)* | *400*
+| `direction`     | defines the direction of the rows movement                         | `up` *or* `down`| *'up'*
+| `time`          | defines the times (in ms) before the rows automatically move       | `int` *(in ms)* | *2500*
+| `autostart`     | enable/disable auto start on load                                  | `0` *or* `1`    | *1*
+| `stopOnHover`   | enable/disable pause when mouse hovers the newsTicker element      | `0` *or* `1`    | *1*
+| `nextButton`    | set the element triggering `next` action on click                  | `JQuery element`| *null*
+| `prevButton`    | set the element triggering `prev` action on click                  | `JQuery element`| *null*
+| `startButton`   | set the element triggering `start` action on click                 | `JQuery element`| *null*
+| `stopButton`    | set the element triggering `stop` action on click                  | `JQuery element`| *null*
+| `hasMoved`      | `callback` called at the end of every movement animation           | `function`      | 
+| `movingUp`      | `callback` called before launching `moving up` action              | `function`      | 
+| `movingDown`    | `callback` called before launching `moving down` action            | `function`      | 
+| `start`         | `callback` called on `start` action                                | `function`      | 
+| `stop`          | `callback` called on `stop` action                                 | `function`      | 
+| `pause`         | `callback` called on `pause` action (triggered on `mouseOver` if `stopOnHover=1`) | `function`      | 
+| `unpause`       | called on `unpause` action (triggered on `mouseOut` if `stopOnHover=1`)| `function`      | 
