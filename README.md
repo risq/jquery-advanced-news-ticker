@@ -1,7 +1,7 @@
 JQuery Advanced News Ticker
 ===========================
 
-A powerful and flexible animated vertical news ticker plugin for JQuery.
+A powerful, flexible and animated vertical news ticker plugin for JQuery.
 JQuery Advanced News Ticker provides multiple callbacks and actions to allow a maximum flexibility and an easy implementation into any project.
 
 DEMO
