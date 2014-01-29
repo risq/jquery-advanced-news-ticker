@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css/newsTicker.css">
+        <link rel="stylesheet" href="stylesheets/newsTicker.css">
     </head>
     <body>
         <div id="oneliner">
@@ -46,7 +46,7 @@
         </div>
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script src="js/newsTicker.js"></script>
+        <script src="javascripts/newsTicker.js"></script>
 
         <script>
             var multilines = $('#multilines .newsticker').newsTicker({
@@ -56,18 +56,7 @@
                 nextButton: $('#multilines .next-button'),
                 stopButton: $('#multilines .stop-button'),
                 startButton: $('#multilines .start-button'),
-                start: function() {
-                    console.log('newsTicker just started !');
-                },
-                pause: function() {
-                    console.log('newsTicker has been paused.');
-                },
-                hasMoved: onNTMove
             });
-
-            function onNTMove() {
-                console.log('just moved');
-            }
 
             var oneliner = $('#oneliner .newsticker').newsTicker({
                 row_height: 44,
