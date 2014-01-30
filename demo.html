@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="stylesheets/newsTicker.css">
+        <link rel="stylesheet" href="css/newsTicker.css">
     </head>
     <body>
         <div id="oneliner">
@@ -46,7 +46,7 @@
         </div>
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script src="javascripts/newsTicker.js"></script>
+        <script src="js/newsTicker.js"></script>
 
         <script>
             var multilines = $('#multilines .newsticker').newsTicker({
@@ -61,10 +61,10 @@
             var oneliner = $('#oneliner .newsticker').newsTicker({
                 row_height: 44,
                 max_rows: 1,
-                time: 5000,
+                duration: 5000,
                 nextButton: $('#oneliner .header')
             });
-
+            
             // Pause newsTicker on .header hover
             $('#oneliner .header').hover(function() {
                 oneliner.newsTicker('pause');

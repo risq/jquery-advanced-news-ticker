@@ -1,6 +1,40 @@
-/* global jQuery: true*/
-// the semi-colon before function invocation is a safety net against concatenated
-// scripts and/or other plugins which may not be closed properly.
+/*
+                      _____              _____              _____             _______         
+                     /\    \            /\    \            /\    \           /::\    \        
+                    /::\    \          /::\    \          /::\    \         /::::\    \       
+                   /::::\    \         \:::\    \        /::::\    \       /::::::\    \      
+                  /::::::\    \         \:::\    \      /::::::\    \     /::::::::\    \     
+                 /:::/\:::\    \         \:::\    \    /:::/\:::\    \   /:::/~~\:::\    \    
+                /:::/__\:::\    \         \:::\    \  /:::/__\:::\    \ /:::/    \:::\    \   
+               /::::\   \:::\    \        /::::\    \ \:::\   \:::\    \:::/    / \:::\    \  
+              /::::::\   \:::\    \__    /::::::\    \_\:::\   \:::\    \:/____/   \:::\____\ 
+             /:::/\:::\   \:::\____\ \  /:::/\:::\    \ \:::\   \:::\    \    |     |:::|    |
+            /:::/  \:::\   \:::|    | \/:::/  \:::\____\ \:::\   \:::\____\___|     |:::|____|
+            \::/   |::::\  /:::|____| /:::/    \::/    /  \:::\   \::/    /   _\___/:::/    / 
+             \/____|:::::\/:::/    /\/:::/    / \/____/\   \:::\   \/____/:\ |::| /:::/    /  
+                   |:::::::::/    /:::::/    /      \:::\   \:::\    \  \:::\|::|/:::/    /   
+                   |::|\::::/    /\::::/____/        \:::\   \:::\____\  \::::::::::/    /    
+                   |::| \::/____/  \:::\    \         \:::\  /:::/    /   \::::::::/    /     
+                   |::|  ~|         \:::\    \         \:::\/:::/    /     \::::::/    /      
+                   |::|   |          \:::\    \         \::::::/    /       \::::/____/       
+                   \::|   |           \:::\____\         \::::/    /         |::|    |        
+                    \:|   |            \::/    /          \::/    /          |::|____|        
+                     \|___|             \/____/            \/____/            ~~              
+                                                                                                                
+     ____.________                                  _____       .___                                     .___ 
+    |    |\_____  \  __ __   ___________ ___.__.   /  _  \    __| _/__  _______    ____   ____  ____   __| _/ 
+    |    | /  / \  \|  |  \_/ __ \_  __ <   |  |  /  /_\  \  / __ |\  \/ /\__  \  /    \_/ ___\/ __ \ / __ |  
+/\__|    |/   \_/.  \  |  /\  ___/|  | \/\___  | /    |    \/ /_/ | \   /  / __ \|   |  \  \__\  ___// /_/ |  
+\________|\_____\ \_/____/  \___  >__|   / ____| \____|__  /\____ |  \_/  (____  /___|  /\___  >___  >____ |  
+                 \__>           \/       \/              \/      \/            \/     \/     \/    \/     \/  
+                   _______                        ___________.__        __                                    
+                   \      \   ______  _  ________ \__    ___/|__| ____ |  | __ ___________                    
+          ______   /   |   \_/ __ \ \/ \/ /  ___/   |    |   |  |/ ___\|  |/ // __ \_  __ \   ______          
+         /_____/  /    |    \  ___/\     /\___ \    |    |   |  \  \___|    <\  ___/|  | \/  /_____/          
+                  \____|__  /\___  >\/\_//____  >   |____|   |__|\___  >__|_ \\___  >__|                      
+                          \/     \/           \/                     \/     \/    \/                          
+*/
+
 ;
 (function($, window, document, undefined) {
         'use strict';
@@ -19,10 +53,10 @@
                         row_height: 20,
                         max_rows: 3,
                         speed: 400,
+                        duration: 2500,
                         direction: 'up',
-                        time: 2500,
                         autostart: 1,
-                        stopOnHover: 1,
+                        pauseOnHover: 1,
                         nextButton: null,
                         prevButton: null,
                         startButton: null,
@@ -78,7 +112,7 @@
                                         this.start()
                                 }.bind(this));
                         
-                        if(this.options.stopOnHover) {
+                        if(this.options.pauseOnHover) {
                                 this.$el.hover(function() {
                                         if (this.state)
                                                 this.pause();
@@ -111,7 +145,7 @@
                 resetInterval: function() {
                         if (this.state) {
                                 clearInterval(this.moveInterval);
-                                this.moveInterval = setInterval(function() {this.move()}.bind(this), this.options.time);
+                                this.moveInterval = setInterval(function() {this.move()}.bind(this), this.options.duration);
                         }
                 },
 
@@ -170,9 +204,13 @@
                 },
 
                 updateOption: function(option, value) {
-                        if (typeof(this.options[option]) !== 'undefined')
+                        if (typeof(this.options[option]) !== 'undefined'){
                                 this.options[option] = value;
-                        //TODO: checkSpeed if speed/time
+                                if (option == 'duration' || option == 'speed'){
+                                    this.checkSpeed();
+                                    this.resetInterval();
+                                }
+                        }
                 },
 
                 getState: function() {
@@ -181,8 +219,8 @@
                 },
 
                 checkSpeed: function() {
-                        if (this.options.time < (this.options.speed + 25))
-                                this.options.speed = this.options.time - 25;
+                        if (this.options.duration < (this.options.speed + 25))
+                                this.options.speed = this.options.duration - 25;
                 },
 
                 destroy: function() {
