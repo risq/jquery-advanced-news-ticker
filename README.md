@@ -18,6 +18,9 @@ HTML: a simple list, which may be fully customized.
     <li>Praesent ornare nisl lorem, ut condimentum lectus gravida ut.</li>
     <li>Nunc ultrices tortor eu massa placerat posuere.</li>
 </ul>
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="js/newsTicker.js"></script>
 `````
 Basic usage :
 `````javascript
