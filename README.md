@@ -106,3 +106,25 @@ Parameters & Callbacks
 | `stop`          | `callback` called on `stop` action                                 | `function`      | 
 | `pause`         | `callback` called on `pause` action (triggered on `mouseOver` if `stopOnHover=1`) | `function`      | 
 | `unpause`       | called on `unpause` action (triggered on `mouseOut` if `stopOnHover=1`)| `function`      | 
+
+Actions
+===========================
+After initializing a newsTicker instance, actions are called with `.newsTicker('actionName', 'param1', 'param2', ... )`
+
+Example :
+`````javascript
+var nt = $('.newsticker').newsTicker();
+nt.newsTicker('stop');
+nt.newsTicker('updateOption','direction','down');
+var state = nt.newsTicker('getState');
+`````
+
+<h4>Actions list</h4>
+| Name       | Parameter(s)         | Action                                             |
+| ---------- | -------------------- | -------------------------------------------------- |
+| `start`    |                      | start moving the elements                          |
+| `stop`     |                      | stop moving the elements                           |
+| ``     |                      |                            |
+| ``     |                      |                            |
+| ``     |                      |                            |
+
