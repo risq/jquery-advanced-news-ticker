@@ -2,7 +2,7 @@ JQuery Advanced News Ticker
 ===========================
 
 A powerful, flexible and animated vertical news ticker plugin for JQuery.
-JQuery Advanced News Ticker provides multiple callbacks and actions to allow a maximum flexibility and an easy implementation into any project.
+JQuery Advanced News Ticker provides multiple callbacks and methods to allow a maximum flexibility and an easy implementation into any project.
 
 DEMO
 ===========================
@@ -30,9 +30,9 @@ $('.newsticker').newsTicker({
     max_rows: 2,
     speed: 600,
     direction: 'up',
-    time: 4000,
+    duration: 4000,
     autostart: 1,
-    stopOnHover: 0
+    pauseOnHover: 0
 });
 `````
 With (custom) control buttons :
@@ -50,7 +50,7 @@ With callbacks :
 `````javascript
 $('.newsticker').newsTicker({
     max_rows: 1,
-    time: 6000,
+    duration: 6000,
     startButton: $('.start'),
     hasMoved: updateInfos,
     start: function() {
@@ -65,7 +65,7 @@ function updateInfos() {
     //...
 }
 `````
-With actions :
+With methods :
 `````javascript
 var nt = $('.newsticker').newsTicker({
     autostart: 0,
@@ -84,32 +84,32 @@ nt.newsTicker('updateOption','speed',1000);
 nt.newsTicker('updateOption','direction','down');
 `````
 
-Parameters & Callbacks
+Options & Callbacks
 ===========================
-| Parameter       | Usage                                                              | Type/Values   | Default value |
-| --------------- | ------------------------------------------------------------------ | ------------- | ------------- |
-| `row_height`    | defines the height (in px) of one row                              | `int`           | *22*
-| `max_row`       | defines the number of rows displayed at the same time              | `int`           | *3*
-| `speed`         | defines the animation speed (in ms)of the rows moving up or down   | `int` *(in ms)* | *400*
-| `direction`     | defines the direction of the rows movement                         | `up` *or* `down`| *'up'*
-| `time`          | defines the times (in ms) before the rows automatically move       | `int` *(in ms)* | *2500*
-| `autostart`     | enable/disable auto start on load                                  | `0` *or* `1`    | *1*
-| `stopOnHover`   | enable/disable pause when mouse hovers the newsTicker element      | `0` *or* `1`    | *1*
-| `nextButton`    | set the element triggering `next` action on click                  | `JQuery element`| *null*
-| `prevButton`    | set the element triggering `prev` action on click                  | `JQuery element`| *null*
-| `startButton`   | set the element triggering `start` action on click                 | `JQuery element`| *null*
-| `stopButton`    | set the element triggering `stop` action on click                  | `JQuery element`| *null*
-| `hasMoved`      | `callback` called at the end of every movement animation           | `function`      | 
-| `movingUp`      | `callback` called before launching `moving up` action              | `function`      | 
-| `movingDown`    | `callback` called before launching `moving down` action            | `function`      | 
-| `start`         | `callback` called on `start` action                                | `function`      | 
-| `stop`          | `callback` called on `stop` action                                 | `function`      | 
-| `pause`         | `callback` called on `pause` action (triggered on `mouseOver` if `stopOnHover=1`) | `function`      | 
-| `unpause`       | called on `unpause` action (triggered on `mouseOut` if `stopOnHover=1`)| `function`      | 
+| Parameter       | Usage                                                                               | Type/Values     | Default value |
+| --------------- | ----------------------------------------------------------------------------------- | --------------- | ------------- |
+| `row_height`    | defines the height (in px) of one row                                               | `int`           | *22*
+| `max_row`       | defines the number of rows displayed at the same time                               | `int`           | *3*
+| `speed`         | defines the animation speed (in ms)of the rows moving up or down                    | `int` *(in ms)* | *400*
+| `duration`      | defines the times (in ms) before the rows automatically move                        | `int` *(in ms)* | *2500*
+| `direction`     | defines the direction of the rows movement                                          | `up` *or* `down`| *'up'*
+| `autostart`     | enable/disable auto start on load                                                   | `0` *or* `1`    | *1*
+| `pauseOnHover`  | enable/disable pause when mouse hovers the newsTicker element                       | `0` *or* `1`    | *1*
+| `nextButton`    | set the element triggering `next` action on click                                   | `JQuery element`| *null*
+| `prevButton`    | set the element triggering `prev` action on click                                   | `JQuery element`| *null*
+| `startButton`   | set the element triggering `start` action on click                                  | `JQuery element`| *null*
+| `stopButton`    | set the element triggering `stop` action on click                                   | `JQuery element`| *null*
+| `hasMoved`      | `callback` called at the end of every movement animation                            | `function`      | 
+| `movingUp`      | `callback` called before launching `moving up` action                               | `function`      | 
+| `movingDown`    | `callback` called before launching `moving down` action                             | `function`      | 
+| `start`         | `callback` called on `start` action                                                 | `function`      | 
+| `stop`          | `callback` called on `stop` action                                                  | `function`      | 
+| `pause`         | `callback` called on `pause` action (triggered on `mouseOver` if `pauseOnHover=1`)   | `function`      | 
+| `unpause`       | called on `unpause` action (triggered on `mouseOut` if `pauseOnHover=1`)             | `function`      | 
 
-Actions
+Methods
 ===========================
-After initializing a newsTicker instance, actions are called with `.newsTicker('actionName', 'param1', 'param2', ... )`
+After initializing a newsTicker instance, methods are called with `.newsTicker('methodName', 'param1', 'param2', ... )`
 
 Example :
 `````javascript
@@ -119,12 +119,18 @@ nt.newsTicker('updateOption','direction','down');
 var state = nt.newsTicker('getState');
 `````
 
-<h4>Actions list</h4>
-| Name       | Parameter(s)         | Action                                             |
-| ---------- | -------------------- | -------------------------------------------------- |
-| `start`    |                      | start moving the elements                          |
-| `stop`     |                      | stop moving the elements                           |
-| ``     |                      |                            |
-| ``     |                      |                            |
-| ``     |                      |                            |
+<h3>Methods list</h3>
+| Method        | Parameter(s)         | Action                                                             |
+| -----------   | -------------------- | ------------------------------------------------------------------ |
+| `start`       |                      | starts moving newsTicker elements                                  |
+| `stop`        |                      | stops moving newsTicker elements                                   |
+| `updateOption`|`optionName`, `value` | update an option (see **Options & Callbacks** for options list)        |
+| `getState`    |                      | returns current state (`0` = stopped, `1` = started, `2` = paused) |
+| `pause`       |                      | pauses newsTicker elements without stopping them - the newsTicker has to be started to be able to pause it  (the `pause` method is called on `mouseOver` if `pauseOnHover` = 1)|
+| `unpause`     |                      | unpauses newsTicker elements - the newsTicker has to be started & paused to be able to unpause it  (the `unpause` method is called on `mouseOut` if `pauseOnHover` = 1)|
+| `moveDown`    |                      | moves elements down                                                |
+| `moveUp`      |                      | moves elements up                                                  |
+| `moveNext`    |                      | moves up or down according to the current `direction` option       |
+| `movePrev`    |                      | moves up or down according to the current `direction` option       |
+| `move`        |                      | equivalent to `moveNext`, but will not move if `paused`            |
 
