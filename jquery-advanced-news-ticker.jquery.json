@@ -1,0 +1,44 @@
+{
+    "name": "jquery-advanced-news-ticker",
+    "title": "jQuery Advanced News Ticker",
+    "description": "A powerful, flexible and animated vertical news ticker plugin for JQuery.",
+    "keywords": [
+        "news",
+        "ticker",
+        "newsticker",
+        "animation",
+        "scroll",
+        "scroller",
+        "slide",
+        "slider",
+        "animated",
+        "callback",
+        "jquery",
+        "vertical"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "name": "risq",
+        "url": "https://github.com/risq"
+    },
+    "maintainers": [
+        {
+            "name": "risq",
+            "url": "https://github.com/risq"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "GPL",
+            "url": "https://github.com/risq/jquery-advanced-news-ticker/blob/master/LICENSE.txt"
+        }
+    ],
+    "bugs": "https://github.com/risq/jquery-advanced-news-ticker/issues",
+    "homepage": "https://github.com/risq/jquery-advanced-news-ticker",
+    "docs": "https://github.com/risq/jquery-advanced-news-ticker",
+    "demo": "http://risq.github.io/jquery-advanced-news-ticker/demo.html",
+    "download": "https://github.com/risq/jquery-advanced-news-ticker",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}
