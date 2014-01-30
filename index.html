@@ -61,10 +61,10 @@
             var oneliner = $('#oneliner .newsticker').newsTicker({
                 row_height: 44,
                 max_rows: 1,
-                time: 5000,
+                duration: 5000,
                 nextButton: $('#oneliner .header')
             });
-
+            
             // Pause newsTicker on .header hover
             $('#oneliner .header').hover(function() {
                 oneliner.newsTicker('pause');
