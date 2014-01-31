@@ -6,7 +6,7 @@ body {
 	color: #444;
 	font-size: 1.2em;
 	font-weight: 300;
-	background-color: #f5dcd1;
+	background-color: #fefefe;
 }
 
 a {
@@ -33,7 +33,7 @@ a:active {
 
 
 /* 
-	MULTILINES 
+	MULTILINES EXAMPLE CSS
 */
 
 #multilines .controls {
@@ -97,7 +97,7 @@ a:active {
 
 
 /*
-	ONELINER
+	ONELINER EXAMPLE CSS
 */
 
 #oneliner {
