@@ -128,7 +128,7 @@ var state = nt.newsTicker('getState');
 | `start`       |                      | starts moving newsTicker elements                                  |
 | `stop`        |                      | stops moving newsTicker elements                                   |
 | `updateOption`|`optionName`, `value` | update an option (see **Options & Callbacks** for options list)        |
-| `getState`    |                      | returns current state (`0` = stopped, `1` = started, `2` = paused) |
+| `getState`    |                      | returns current state : `0` = stopped, `1` = started, `2` = paused (and started) |
 | `pause`       |                      | pauses newsTicker elements without stopping them - the newsTicker has to be started to be able to pause it  (the `pause` method is called on `mouseOver` if `pauseOnHover` = 1)|
 | `unpause`     |                      | unpauses newsTicker elements - the newsTicker has to be started & paused to be able to unpause it  (the `unpause` method is called on `mouseOut` if `pauseOnHover` = 1)|
 | `moveDown`    |                      | moves elements down                                                |
