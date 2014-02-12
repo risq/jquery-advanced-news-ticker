@@ -81,7 +81,7 @@
                 this.state = 0;
                 this.paused = 0;
                 this.moving = 0;
-                if (this.$el.is('ul') || this.$el.is('ol')) {
+                if (this.$el.is('ul')) {
                         this.init();
                 }
         }
