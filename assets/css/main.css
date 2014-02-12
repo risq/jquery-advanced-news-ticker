@@ -146,21 +146,41 @@ a:after {
 }
 
 /* Green */
-#green {
+.green {
 	background-color: #74cfae;
 	padding-top: 50px;
 	padding-bottom: 50px;
 	margin-bottom: 0px;
 }
 
-#green h3 {
+.green h3 {
 	color: white;
 	font-weight: 400;
 	margin-bottom: 35px;
 }
 
-#green p {
+.green p {
 	color: white;
+	font-weight: 400;
+	font-size: 20px;
+}
+
+/* White */
+.white {
+	background-color: #F2F2F2;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	margin-bottom: 0px;
+}
+
+.white h3 {
+	color: #4e4e4e;
+	font-weight: 400;
+	margin-bottom: 35px;
+}
+
+.white p {
+	color: #4e4e4e;
 	font-weight: 400;
 	font-size: 20px;
 }
@@ -183,22 +203,22 @@ a:after {
 }
 
 /* Social Links */
-#social {
+#download {
 	width: 100%;
 	padding-top: 200px;
 	padding-bottom: 200px;
 }
 
-#social i {
+#download i {
 	font-size: 50px;
 	color: #74cfae;
 }
 
-#social .col-md-3:hover {
+#download .col-md-3:hover {
 	background-color: #f5f5f5;
 }
 
-#social .col-md-3 {
+#download .col-md-3 {
 	padding:30px;
 }
 
@@ -222,57 +242,190 @@ a:after {
     opacity: 1;
 }
 
-/* CUSTOM */
+
+/* 
+	CUSTOM 
+*/
+
 ul, li {
 	margin: 0;
 	padding: 0;
 	list-style: 0;
 }
 
-.btn-success {
+.button {
+	padding: 16px 30px;
+	cursor: pointer;
+	margin-bottom: 0;
+	font-size: 18px;
 	background: #74CFAE;
+	color: #fff;
+	display: inline-block;
+	border-radius: none;
 }
 
-.btn-success:hover {
-	background: #37a079;
-	border-color: #37a079;
+
+.button:hover {
+	background-color: #37a079;
 }
 
+.nav > li.active > a.git-link {
+	font-size: 16px;
+}
 
-#hello .btn-lg {
-	margin: 32px 8px;
+.nav > li.active > a.git-link:hover {
+	background-color: #37a079;
+}
+
+.nav > li.active > a.git-link i {
+	margin-right: 6px;
+	font-size: 20px;
+}
+
+#hello .button {
+	margin: 16px 8px;
 	text-transform: uppercase;
 	width: 220px;
 }
 
+code.example-code {
+	max-height: 325px;
+	overflow: scroll;
+}
 
+h2.header {
+	text-align: center;
+	margin-top: 0;
+	margin-bottom: 1em;
+}
+
+#f p {
+	font-size: 1.2em;
+	font-weight: 300;
+}
+
+#f p a {
+	color: #4e4e4e;
+}
+
+#f p a:hover {
+	color: #000;
+}
 
 /* title */
-#title {
+.title {
 	background-color: #4e4e4e;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	margin-bottom: 0px;
 }
 
-#title h3 {
+.title h3 {
 	color: white;
 	font-weight: 400;
 	margin-bottom: 20px;
 	font-weight: 700;
 }
 
-#title p {
+.title p {
 	color: white;
 	font-weight: 400;
 	font-size: 20px;
+}
+
+/* TABLE */
+.params-table code {
+	color: #4e4e4e;
+	border-radius: 1px;
+	background-color: rgba(116, 207, 174, .3);
+	-webkit-transition: background-color 0.1s ease-in-out;
+    -moz-transition: background-color 0.1s ease-in-out;
+    -ms-transition: background-color 0.1s ease-in-out;
+    -o-transition:background-colorl 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.params-table code:hover {
+	background-color: rgba(116, 207, 174, .5);
+}
+
+
+.params-table thead {
+	color: #fff;
+	background-color: #74cfae;
+}
+
+.params-table  thead > tr > th {
+	border-bottom: none;
+	font-size: 1.2em;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.params-table tbody > tr > td {
+	border-top: none;
+}
+
+.params-table > tbody > tr:hover > td {
+	background-color: #e4f6ef;
+}
+
+
+/* DOWNLOAD */
+
+.download-title {
+	background-color: #4e4e4e;
+}
+
+.download-title h3 {
+	margin: 3em 0;
+	color: #fff;
+}
+
+#download {
+	padding: 8em 0;
+}
+
+#download .download-link {
+	padding: 1em .5em;
+}
+
+#download .download-link:hover {
+	background: #fff;
+}
+
+#download .download-link i,
+#download .download-link .download-text {
+	-webkit-transition: color 0.2s ease-in-out;
+    -moz-transition: color 0.2s ease-in-out;
+    -ms-transition: color 0.2s ease-in-out;
+    -o-transition:colorl 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
+}
+
+#download .download-link:hover i,
+#download .download-link:hover .download-text {
+	color: #4e4e4e;
+}
+
+#download .download-link i {
+	font-size: 80px;
+}
+
+
+#download .download-text {
+	font-size: 2.4em;
+	font-weight: 300;
+	color: #74cfae;
 }
 
 /*
 	NEWSTICKERS
 */
 
+
 /* nt-title */
+
 #nt-title-container {
 	background: #F2F2F2;
 }
@@ -288,7 +441,9 @@ ul, li {
 	text-overflow: ellipsis;
 }
 
+
 /* nt-example1 */
+
 #nt-example1 {
 	max-width: 620px;
 	margin: auto;
@@ -319,8 +474,8 @@ ul, li {
 	overflow: hidden;
 	height: 80px;
 	padding: 10px;
-	line-height: 20px;
-	font-size: 22px;
+	line-height: 30px;
+	font-size: 24px;
 	text-align: left;
 	border-bottom: 1px dotted #2c8162;
 }
@@ -329,3 +484,126 @@ ul, li {
 	background: #FFF;
 }
 
+
+/* nt-example2 */
+
+#nt-example2 {
+	max-width: 620px;
+	margin: auto;
+}
+
+#nt-example2-container {
+	text-align: center;
+	margin-top: 107px;
+	margin-bottom: 40px;
+	height: 300px;
+}
+
+#nt-example2-container i {
+	font-size: 36px;
+	margin: 8px;
+	cursor: pointer;
+	-webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+#nt-example2-container i:hover {
+	color: #333;
+}
+
+#nt-example2 li {
+	color: #f2f2f2;
+	background: #74cfae;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 60px;
+	padding: 10px 16px 10px 16px;
+	line-height: 40px;
+	font-size: 24px;
+	text-align: left;
+}
+
+#nt-example2 li .state {
+	font-size: inherit;
+	margin: 0;
+}
+
+#nt-example2 span.hour {
+	font-weight: 700;
+}
+
+#nt-example2-infos-triangle {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 15px 16px 15px;
+	border-color: transparent transparent #74cfae transparent;
+	margin: 6px auto 0;
+}
+
+#nt-example2-infos {
+	max-width: 620px;
+	margin: auto;
+	padding: 12px;
+	color: #f2f2f2;
+	background: #74cfae;
+}
+
+#nt-example2-infos .infos-hour {
+	font-size: 50px;
+	font-weight: 700;
+	margin-top: 20px;
+}
+
+#nt-example2-infos h4 {
+	color: #F2F2F2;
+	font-weight: 500;
+}
+
+#nt-example2-infos .infos-text {
+	text-align: left;
+}
+
+/* nt-example3 */
+
+#nt-example3 {
+	margin: 80px auto 0;
+}
+
+#nt-example3-container {
+	text-align: center;
+}
+
+#nt-example3-container i {
+	font-size: 36px;
+	margin: 8px;
+	cursor: pointer;
+	-webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+#nt-example3-container i:hover {
+	color: #333;
+}
+
+#nt-example3 li {
+	color: #4e4e4e;
+	background: #F2F2F2;
+	overflow: hidden;
+	height: 80px;
+	padding: 10px;
+	line-height: 60px;
+	font-size: 40px;
+	text-transform: uppercase;
+}
+
+#nt-example3 li:hover {
+	background: #FFF;
+}
