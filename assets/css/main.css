@@ -312,6 +312,15 @@ h2.header {
 	color: #000;
 }
 
+#f h3 {
+	color: #fff;
+}
+
+#share-buttons a span {
+	font-size: 3em;
+	margin: 0 .5em;
+}
+
 /* title */
 .title {
 	background-color: #4e4e4e;
