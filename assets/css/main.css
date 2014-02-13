@@ -321,6 +321,11 @@ h2.header {
 	margin: 0 .5em;
 }
 
+#share-buttons iframe {
+	margin-bottom: -16px;
+	margin-left: 14px;
+}
+
 /* title */
 .title {
 	background-color: #4e4e4e;
