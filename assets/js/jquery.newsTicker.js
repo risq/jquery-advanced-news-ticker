@@ -38,16 +38,6 @@
 ;
 (function($, window, document, undefined) {
         'use strict';
-        // undefined is used here as the undefined global variable in ECMAScript 3 is
-        // mutable (ie. it can be hasMoved by someone else). undefined isn't really being
-        // passed in so we can ensure the value of it is truly undefined. In ES5, undefined
-        // can no longer be modified.
-
-        // window and document are passed through as local variable rather than global
-        // as this (slightly) quickens the resolution process and can be more efficiently
-        // minified (especially when both are regularly referenced in your plugin).
-
-        // Create the defaults once
         var pluginName = 'newsTicker',
                 defaults = {
                         row_height: 20,
@@ -70,7 +60,6 @@
                         unpause: function() {}
                 };
 
-        // The actual plugin constructor
         function Plugin(element, options) {
                 this.element = element;
                 this.$el = $(element);
@@ -214,8 +203,8 @@
                 },
 
                 getState: function() {
-                        if (paused) return 2
-                        else return this.state;//0 = stopped, 1 = started
+                        if (paused) return 2 // 2 = paused
+                        else return this.state;// 0 = stopped, 1 = started
                 },
 
                 checkSpeed: function() {
@@ -224,12 +213,10 @@
                 },
 
                 destroy: function() {
-                        this._destroy(); //or this.delete; depends on jQuery version
+                        this._destroy(); // or this.delete; depends on jQuery version
                 }
         };
 
-        // A really lightweight plugin wrapper around the constructor,
-        // preventing against multiple instantiations
         $.fn[pluginName] = function(option) {
                 var args = arguments;
                 
@@ -241,9 +228,6 @@
                                 $this.data('plugin_' + pluginName, (data = new Plugin(this, options)));
                         }
                         // if first argument is a string, call silimarly named function
-                        // this gives flexibility to call functions of the plugin e.g.
-                        //   - $('.dial').plugin('destroy');
-                        //   - $('.dial').plugin('render', $('.new-child'));
                         if (typeof option === 'string') {
                                 data[option].apply(data, Array.prototype.slice.call(args, 1));
                         }
