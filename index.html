@@ -733,21 +733,17 @@ var state = nt.newsTicker('getState');</script></code></pre>
     <script src="assets/js/jquery.mCustomScrollbar.min.js"></script>
     <script src="assets/js/newsTicker.js"></script>
     <script>
-    		$('a[href*=#]').click(function() {
+    		$('a[href*=#]').click(function(e) {
 			    var href = $.attr(this, 'href');
 			    if (href != "#") {
 				    $('html, body').animate({
 				        scrollTop: $(href).offset().top - 81
-				    }, 500, function () {
-				        window.location.hash = href;
-				    });
+				    }, 500);
 				}
 				else {
 					$('html, body').animate({
 				        scrollTop: 0
-				    }, 500, function () {
-				        window.location.hash = href;
-				    });
+				    }, 500);
 				}
 			    return false;
 			});

@@ -451,6 +451,7 @@ h2.header {
 	font-size: 28px;
 	color: #4E4E4E;
 	white-space: nowrap;
+	list-style: none;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
