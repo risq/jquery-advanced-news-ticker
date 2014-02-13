@@ -247,10 +247,14 @@ a:after {
 	CUSTOM 
 */
 
+body {
+	overflow-x: hidden;
+}
+
 ul, li {
 	margin: 0;
 	padding: 0;
-	list-style: 0;
+	list-style: none;
 }
 
 .button {
@@ -316,12 +320,12 @@ h2.header {
 	color: #fff;
 }
 
-#share-buttons a span {
+#s-icons a span {
 	font-size: 3em;
 	margin: 0 .5em;
 }
 
-#share-buttons iframe {
+#s-icons iframe {
 	margin-bottom: -16px;
 	margin-left: 14px;
 }
@@ -490,6 +494,7 @@ h2.header {
 	height: 80px;
 	padding: 10px;
 	line-height: 30px;
+	list-style: none;
 	font-size: 24px;
 	text-align: left;
 	border-bottom: 1px dotted #2c8162;
@@ -538,6 +543,7 @@ h2.header {
 	height: 60px;
 	padding: 10px 16px 10px 16px;
 	line-height: 40px;
+	list-style: none;
 	font-size: 24px;
 	text-align: left;
 }
@@ -617,6 +623,7 @@ h2.header {
 	line-height: 60px;
 	font-size: 40px;
 	text-transform: uppercase;
+	list-style: none;
 }
 
 #nt-example3 li:hover {
