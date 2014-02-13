@@ -247,10 +247,14 @@ a:after {
 	CUSTOM 
 */
 
+body {
+	overflow-x: hidden;
+}
+
 ul, li {
 	margin: 0;
 	padding: 0;
-	list-style: 0;
+	list-style: none;
 }
 
 .button {
