@@ -312,6 +312,20 @@ h2.header {
 	color: #000;
 }
 
+#f h3 {
+	color: #fff;
+}
+
+#s-icons a span {
+	font-size: 3em;
+	margin: 0 .5em;
+}
+
+#s-icons iframe {
+	margin-bottom: -16px;
+	margin-left: 14px;
+}
+
 /* title */
 .title {
 	background-color: #4e4e4e;
@@ -437,6 +451,7 @@ h2.header {
 	font-size: 28px;
 	color: #4E4E4E;
 	white-space: nowrap;
+	list-style: none;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -475,6 +490,7 @@ h2.header {
 	height: 80px;
 	padding: 10px;
 	line-height: 30px;
+	list-style: none;
 	font-size: 24px;
 	text-align: left;
 	border-bottom: 1px dotted #2c8162;
@@ -523,6 +539,7 @@ h2.header {
 	height: 60px;
 	padding: 10px 16px 10px 16px;
 	line-height: 40px;
+	list-style: none;
 	font-size: 24px;
 	text-align: left;
 }
@@ -602,6 +619,7 @@ h2.header {
 	line-height: 60px;
 	font-size: 40px;
 	text-transform: uppercase;
+	list-style: none;
 }
 
 #nt-example3 li:hover {

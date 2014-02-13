@@ -703,6 +703,22 @@ var state = nt.newsTicker('getState');</script></code></pre>
 	<div id="f">
 		<div class="container">
 			<div class="row">
+			<h3>Share this page</h3>
+				<div id="s-icons">
+					<a href="http://www.facebook.com/sharer.php?u=http://risq.github.io/jquery-advanced-news-ticker/" target="_blank"><span class="fa fa-facebook"></span></a>
+
+					<a href="http://twitter.com/share?url=http://risq.github.io/jquery-advanced-news-ticker/&text=JQuery Advanced News Ticker Plugin" target="_blank"><span class="fa fa-twitter"></span></a>
+
+					<a href="https://plus.google.com/share?url=http://risq.github.io/jquery-advanced-news-ticker/" target="_blank"><span class="fa fa-google-plus"></span></a>
+
+					<a href="http://www.linkedin.com/shareArticle?mini=true&url=http://risq.github.io/jquery-advanced-news-ticker/" target="_blank"><span class="fa fa-linkedin"></span></a>
+
+					<a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());"><span class="fa fa-pinterest"></span></a>
+
+					<a href="mailto:?Subject=JQuery Advanced News Ticker Plugin&Body=http://risq.github.io/jquery-advanced-news-ticker/"><span class="fa fa-envelope"></span></a>
+
+ 					<script id='fbkt5nx'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=risq&url='+encodeURIComponent(document.URL);f.title='Flattr';f.height=62;f.width=55;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fbkt5nx');</script>
+				</div>
 				<p>Created by <a href="https://github.com/risq" target="_blank">risq</a></p>
 			</div>
 		</div>
@@ -715,23 +731,19 @@ var state = nt.newsTicker('getState');</script></code></pre>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/prism.js"></script>
     <script src="assets/js/jquery.mCustomScrollbar.min.js"></script>
-    <script src="assets/js/jquery.newsTicker.js"></script>
+    <script src="jquery.newsTicker.min.js"></script>
     <script>
     		$('a[href*=#]').click(function() {
 			    var href = $.attr(this, 'href');
 			    if (href != "#") {
 				    $('html, body').animate({
 				        scrollTop: $(href).offset().top - 81
-				    }, 500, function () {
-				        window.location.hash = href;
-				    });
+				    }, 500);
 				}
 				else {
 					$('html, body').animate({
 				        scrollTop: 0
-				    }, 500, function () {
-				        window.location.hash = href;
-				    });
+				    }, 500);
 				}
 			    return false;
 			});
