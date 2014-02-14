@@ -246,8 +246,7 @@ var nt_example3 = $('#nt-example3').newsTicker({
     pauseOnHover: 0,
     hasMoved: function() {
     	if (speed > 700) {
-    		$('#nt-example3').newsTicker("stop");
-    		console.log('stop')
+    		nt_example3.newsTicker("stop");
     		$('#nt-example3-button').text("RESULT: " + $('#nt-example3 li:first').text().toUpperCase());
     		setTimeout(function() {
     			$('#nt-example3-button').text("START");
@@ -258,9 +257,8 @@ var nt_example3 = $('#nt-example3').newsTicker({
     	else if (state == 'stopping') {
     		add = add * 1.4;
     		speed = speed + add;
-    		console.log(speed)
-    		$('#nt-example3').newsTicker('updateOption', "duration", speed + 25);
-    		$('#nt-example3').newsTicker('updateOption', "speed", speed);
+    		nt_example3.newsTicker('updateOption', "duration", speed + 25)
+    				   .newsTicker('updateOption', "speed", speed);
     	}
     }
 });
@@ -269,9 +267,9 @@ $('#nt-example3-button').click(function(){
     	state = 'turning';
     	speed = 1;
     	add = 1;
-    	$('#nt-example3').newsTicker('updateOption', "duration", 0);
-    	$('#nt-example3').newsTicker('updateOption', "speed", speed);
-    	nt_example3.newsTicker('start');
+    	nt_example3.newsTicker('updateOption', "duration", 0)
+    			   .newsTicker('updateOption', "speed", speed);
+    			   .newsTicker('start');
     	$(this).text("STOP");
     }
     else if (state == 'turning') {
@@ -751,12 +749,16 @@ var state = nt.newsTicker('getState');</script></code></pre>
     		$(window).load(function(){
 	            $('code.language-javascript').mCustomScrollbar();
 	        });
+
+	        // header news ticker
             var nt_title = $('#nt-title').newsTicker({
                 row_height: 40,
                 max_rows: 1,
                 duration: 3000,
                 pauseOnHover: 0
             });
+
+            // example 1
             var nt_example1 = $('#nt-example1').newsTicker({
                 row_height: 80,
                 max_rows: 3,
@@ -764,6 +766,8 @@ var state = nt.newsTicker('getState');</script></code></pre>
                 prevButton: $('#nt-example1-prev'),
                 nextButton: $('#nt-example1-next')
             });
+
+            // example 2
             var nt_example2 = $('#nt-example2').newsTicker({
                 row_height: 60,
                 max_rows: 1,
@@ -790,6 +794,8 @@ var state = nt.newsTicker('getState');</script></code></pre>
             }, function() {
                 nt_example2.newsTicker('unpause');
             });
+
+            // example 3
             var state = 'stopped';
             var speed;
             var add;
@@ -802,8 +808,7 @@ var state = nt.newsTicker('getState');</script></code></pre>
                 pauseOnHover: 0,
                 hasMoved: function() {
                 	if (speed > 700) {
-                		$('#nt-example3').newsTicker("stop");
-                		console.log('stop')
+                		nt_example3.newsTicker("stop");
                 		$('#nt-example3-button').text("RESULT: " + $('#nt-example3 li:first').text().toUpperCase());
                 		setTimeout(function() {
                 			$('#nt-example3-button').text("START");
@@ -814,9 +819,8 @@ var state = nt.newsTicker('getState');</script></code></pre>
                 	else if (state == 'stopping') {
                 		add = add * 1.4;
                 		speed = speed + add;
-                		console.log(speed)
-                		$('#nt-example3').newsTicker('updateOption', "duration", speed + 25);
-                		$('#nt-example3').newsTicker('updateOption', "speed", speed);
+                		nt_example3.newsTicker('updateOption', "duration", speed + 25)
+                				   .newsTicker('updateOption', "speed", speed);
                 	}
                 }
             });
@@ -826,9 +830,9 @@ var state = nt.newsTicker('getState');</script></code></pre>
 	            	state = 'turning';
 	            	speed = 1;
 	            	add = 1;
-	            	$('#nt-example3').newsTicker('updateOption', "duration", 0);
-	            	$('#nt-example3').newsTicker('updateOption', "speed", speed);
-	            	nt_example3.newsTicker('start');
+	            	nt_example3.newsTicker('updateOption', "duration", 0)
+	            			   .newsTicker('updateOption', "speed", speed)
+	            			   .newsTicker('start');
 	            	$(this).text("STOP");
 	            }
 	            else if (state == 'turning') {
