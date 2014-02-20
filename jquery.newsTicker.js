@@ -41,11 +41,13 @@
         var pluginName = 'newsTicker',
                 defaults = {
                         row_height: 20,
+                        min_height:540,
                         max_rows: 3,
                         speed: 400,
                         duration: 2500,
                         direction: 'up',
                         autostart: 1,
+                        scroll: 'continuous',
                         pauseOnHover: 1,
                         nextButton: null,
                         prevButton: null,
@@ -57,7 +59,8 @@
                         start: function() {},
                         stop: function() {},
                         pause: function() {},
-                        unpause: function() {}
+                        unpause: function() {},
+                        keyboard: false
                 };
 
         function Plugin(element, options) {
@@ -70,17 +73,72 @@
                 this.state = 0;
                 this.paused = 0;
                 this.moving = 0;
+                this.itemid = 0;
                 if (this.$el.is('ul')) {
                         this.init();
                 }
         }
 
         Plugin.prototype = {
+                add: function(content, afterlastItem){
+                        if (afterlastItem) {
+                                //place item after the last item added rather than the bottom of the list
+                                var item = this.$el.children("li[data-id='1']");
+                                if (item.length==0 || item.is(':first-child')) { //no data id set yet or first item
+                                        this.$el.append($('<li>').html(content));
+                                }
+                                else{
+                                        item.before($('<li>').html(content));
+                                }
+                        }
+                        else{
+                                this.$el.append($('<li>').html(content));
+                        }
+                },
+                restart: function(){
+                //put list back to the initial item
+                        
+                },
                 init: function() {
-                        this.$el.height(this.options.row_height * this.options.max_rows)
-                                .css({overflow : 'hidden'});
+                        var h = this.options.row_height * this.options.max_rows;
+                        if (this.options.min_height > h) {
+                                h = this.options.min_height;
+                        }
+                        
+                        this.$el.height(h).css({overflow : 'hidden'});
 
                         this.checkSpeed();
+                        if (this.options["keyboard"]) {
+                                //set up left and right arrows
+                                $(document).keydown(function (e){
+                                        console.log(e.which);
+                                        if((e.keyCode || e.which) == 13) {// enter refresh
+                                        window.location.reload();
+                                        }
+                                        else if((e.keyCode || e.which) == 37) {// left arrow = prev
+                                                this.movePrev();
+                                                this.resetInterval();
+                                        }
+                                        else if((e.keyCode || e.which) == 39)  {  // right arrow = next
+                                                this.moveNext();
+                                                this.resetInterval();
+                                        }
+                                        else if((e.keyCode || e.which) == 38) {// up arrow = start
+                                                this.start()
+                                        }
+                                        else if((e.keyCode || e.which) == 40)  {  // down arrow = stop
+                                                this.stop()
+                                        }
+                                        else if((e.keyCode || e.which) == 32){ // user has pressed space = go
+                                                if (this.state == 0) {
+                                                        this.start();
+                                                }
+                                                else{
+                                                        this.stop();
+                                                }
+                                        }
+                                }.bind(this));
+                        }
 
                         if(this.options.nextButton && typeof(this.options.nextButton[0]) !== 'undefined')
                                 this.options.nextButton.click(function(e) {
@@ -114,9 +172,7 @@
                         if(this.options.autostart)
                                 this.start();
                 },
-                add: function(content){
-                        this.$el.append($('<li>').html(content));
-                },
+
                 start: function() {
                         if (!this.state) {
                                 this.state = 1;
@@ -172,7 +228,9 @@
                         if (!this.moving) {
                                 this.moving = 1;
                                 this.options.movingDown();
-                                this.$el.children('li:last').detach().prependTo(this.$el).css('marginTop', '-' + this.options.row_height + 'px')
+                                var element = this.$el.children('li:last');
+                                element.css({'display':'show'});
+                                element.detach().prependTo(this.$el).css('marginTop', '-' + element.height() + 'px')
                                         .animate({marginTop: '0px'}, this.options.speed, function(){
                                                 this.moving = 0;
                                                 this.options.hasMoved();
@@ -185,12 +243,29 @@
                                 this.moving = 1;
                                 this.options.movingUp();
                                 var element = this.$el.children('li:first');
-                                element.animate({marginTop: '-' + this.options.row_height + 'px'}, this.options.speed,
-                                        function(){
-                                                element.detach().css('marginTop', '0').appendTo(this.$el);
-                                                this.moving = 0;
-                                                this.options.hasMoved();
-                                        }.bind(this));
+                                //set id - so we know when we hit the start again
+                                if (element.attr('data-id') === undefined) {
+                                        this.itemid++;
+                                        element.attr('data-id',this.itemid);
+                                }
+                                //only move if next item is displayable
+                                if (this.$el.children("li:nth-child(2)").is(":hidden") ) {
+                                        this.stop;
+                                        this.moving = 0;
+                                }
+                                else{  
+                                        element.animate({marginTop: '-' + element.height() + 'px'}, this.options.speed,
+                                                function(){
+                                                        if (this.options["scroll"] == "once") {
+                                                                element.css({'display':'none'});
+                                                        }
+                                                        element.detach().css({'marginTop':'0'}).appendTo(this.$el);
+                                                        
+                                                        this.moving = 0;
+                                                        this.options.hasMoved();
+                                                }.bind(this));
+                                }
+                                //waht is the id of the next item...
                         }
                 },
 
