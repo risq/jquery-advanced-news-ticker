@@ -114,7 +114,9 @@
                         if(this.options.autostart)
                                 this.start();
                 },
-
+                add: function(content){
+                        this.$el.append($('<li>').html(content));
+                },
                 start: function() {
                         if (!this.state) {
                                 this.state = 1;
