@@ -1,4 +1,4 @@
-JQuery Advanced News Ticker 1.0.1
+JQuery Advanced News Ticker 1.0.11
 ===========================
 
 A powerful, flexible and animated vertical news ticker plugin for JQuery.
@@ -136,4 +136,5 @@ var state = nt.newsTicker('getState');
 | `moveNext`    |                      | moves up or down according to the current `direction` option       |
 | `movePrev`    |                      | moves up or down according to the current `direction` option       |
 | `move`        |                      | equivalent to `moveNext`, but will not move if `paused`            |
+| `add`         | `content`            | adds a ticker row                                                  |
 
