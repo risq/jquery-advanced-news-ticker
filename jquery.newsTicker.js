@@ -33,6 +33,14 @@
          /_____/  /    |    \  ___/\     /\___ \    |    |   |  \  \___|    <\  ___/|  | \/  /_____/          
                   \____|__  /\___  >\/\_//____  >   |____|   |__|\___  >__|_ \\___  >__|                      
                           \/     \/           \/                     \/     \/    \/                          
+
+
+==============================================================================================================
+    JQuery Advanced News Ticker 1.0.11 (20/02/14)
+    created by risq
+    website (docs & demos) : http://risq.github.io/jquery-advanced-news-ticker/
+==============================================================================================================
+
 */
 
 ;
@@ -70,7 +78,7 @@
                 this.state = 0;
                 this.paused = 0;
                 this.moving = 0;
-                if (this.$el.is('ul')) {
+                if (this.$el.is('ul, ol')) {
                         this.init();
                 }
         }
@@ -114,9 +122,7 @@
                         if(this.options.autostart)
                                 this.start();
                 },
-                add: function(content){
-                        this.$el.append($('<li>').html(content));
-                },
+
                 start: function() {
                         if (!this.state) {
                                 this.state = 1;
@@ -202,6 +208,10 @@
                                     this.resetInterval();
                                 }
                         }
+                },
+
+                add: function(content){
+                    this.$el.append($('<li>').html(content));
                 },
 
                 getState: function() {
