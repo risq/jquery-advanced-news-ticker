@@ -111,7 +111,6 @@
                         if (this.options["keyboard"]) {
                                 //set up left and right arrows
                                 $(document).keydown(function (e){
-                                        console.log(e.which);
                                         if((e.keyCode || e.which) == 13) {// enter refresh
                                         window.location.reload();
                                         }
