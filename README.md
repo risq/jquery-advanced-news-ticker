@@ -138,3 +138,7 @@ var state = nt.newsTicker('getState');
 | `move`        |                      | equivalent to `moveNext`, but will not move if `paused`            |
 | `add`         | `content`            | adds a ticker row                                                  |
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/risq/jquery-advanced-news-ticker/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
