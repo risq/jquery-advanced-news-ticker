@@ -215,7 +215,7 @@
                 },
 
                 getState: function() {
-                        if (paused) return 2 // 2 = paused
+                        if (this.paused) return 2 // 2 = paused
                         else return this.state;// 0 = stopped, 1 = started
                 },
 
